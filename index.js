@@ -38,9 +38,10 @@ Geocoder.prototype = {
 
   selectProvider: function ( name, opts ) {
 
-    if ( ! name ) {
+    // Not callback in params
+    /*if ( ! name ) {
       return cbk( new Error( "Geocoder.selectProvider requires a name.") );
-    }
+    }*/
 
     this.provider = name;
     this.providerOpts = opts || {};
@@ -59,7 +60,7 @@ Geocoder.prototype = {
 
   geocode: function ( loc, cbk, opts ) {
 
-    if ( ! loc ) {
+    if ( ! loc && cbk ) {
         return cbk( new Error( "Geocoder.geocode requires a location.") );
     }
 
@@ -68,7 +69,7 @@ Geocoder.prototype = {
   },
 
   reverseGeocode: function ( lat, lng, cbk, opts ) {
-    if ( !lat || !lng ) {
+    if ( (!lat || !lng) && cbk) {
       return cbk( new Error( "Geocoder.reverseGeocode requires a latitude and longitude." ) );
     }
 
